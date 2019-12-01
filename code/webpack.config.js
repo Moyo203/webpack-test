@@ -1,4 +1,6 @@
 const path = require('path')
+//  提取css需要的插件
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry: './src/index.js',   //webpack入口
     output: {                  //webpack出口
@@ -7,22 +9,38 @@ module.exports = {
     },
     module:{
         rules:[
+            // {
+            //     test:/\.css$/,  //正则表达式
+            //     use:[
+            //         //这里是css的相关依赖包
+            //         'style-loader',
+            //         'css-loader'
+            //     ],
+            // },
             {
-                test:/\.css$/,  //正则表达式
-                use:[
-                    //这里是css的相关依赖包
-                    'style-loader',
-                    'css-loader'
-                ],
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({	// 提取css
+                    fallback: "style-loader",
+                    use: ["css-loader"]
+                  })
             },
+            // {
+            //     test: /\.less$/,		// 匹配less扩展名文件
+            //     use:[				
+            //         'style-loader',		// 把less代码写入到网页中
+            //         'css-loader',		// 读取less的代码
+            //         'less-loader'		// 解释编译less代码
+            //     ]	
+            // },
             {
-                test: /\.less$/,		// 匹配less扩展名文件
-                use:[				
-                    'style-loader',		// 把less代码写入到网页中
-                    'css-loader',		// 读取less的代码
-                    'less-loader'		// 解释编译less代码
-                ]	
-            },{
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({	// 提取less
+                    fallback: "style-loader",
+                    use: ["css-loader", "less-loader"]
+                  })
+            },
+            
+            {
                 test: /\.(png|svg|jpg|gif)$/,	// 匹配图片文件
                 use: [
                     {
@@ -35,5 +53,8 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin('style/style.css') // 提取到dist的style文件夹中
+    ]
 }
