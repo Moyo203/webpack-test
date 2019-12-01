@@ -5,9 +5,9 @@ import './demo.less'
 //导入图片
 import hzw from './images/hzw.jpg'
 // + 导入错误的模块
-import error from "./error"
+// import error from "./error"
 // 执行会报错的函数
-error();
+// error();
 //创建div元素
 let elm = document.createElement('div')
 elm.innerHTML =`<div class="aa">这里是css添加的效果</div>
