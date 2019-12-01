@@ -22,7 +22,18 @@ module.exports = {
                     'css-loader',		// 读取less的代码
                     'less-loader'		// 解释编译less代码
                 ]	
-            },
+            },{
+                test: /\.(png|svg|jpg|gif)$/,	// 匹配图片文件
+                use: [
+                    {
+                        loader: "file-loader",              // 处理图片文件返回链接
+                        options: {
+                            publicPath: "./images/",   		//  引入图片时会在路径前面加上该选项
+                            outputPath: "images"            //  输出到dist下的images目录
+                        }
+                    } 
+                ]
+            }
         ]
     }
 }
