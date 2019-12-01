@@ -1,11 +1,13 @@
 const path = require('path')
 //  提取css需要的插件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+//HTML生成需要的插件
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry: './src/index.js',   //webpack入口
     output: {                  //webpack出口
         path: path.resolve('dist'),  //这里要绝对路径
-        filename: 'bundle.js'       //这里是新建出来的文件
+        filename: 'main.js'       //这里是新建出来的文件
     },
     module:{
         rules:[
@@ -55,6 +57,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('style/style.css') // 提取到dist的style文件夹中
+        new ExtractTextPlugin('style/style.css'), // 提取到dist的style文件夹中
+        new HtmlWebpackPlugin({
+            template: "public/index.html"	// template指定默认html模板
+        })
     ]
 }
