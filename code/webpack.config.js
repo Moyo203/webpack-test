@@ -11,6 +11,7 @@ module.exports = {
         path: path.resolve('dist'),  //这里要绝对路径
         filename: 'main.js'       //这里是新建出来的文件
     },
+    devtool: "source-map", // + 生成映射源代码文件
     module:{
         rules:[
             // {
