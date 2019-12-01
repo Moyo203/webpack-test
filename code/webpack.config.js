@@ -3,6 +3,8 @@ const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 //HTML生成需要的插件
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// 清除所需要的插件
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     entry: './src/index.js',   //webpack入口
     output: {                  //webpack出口
@@ -60,6 +62,9 @@ module.exports = {
         new ExtractTextPlugin('style/style.css'), // 提取到dist的style文件夹中
         new HtmlWebpackPlugin({
             template: "public/index.html"	// template指定默认html模板
-        })
+        }),
+        // 调用清除打包目录插件
+        new CleanWebpackPlugin(),
+
     ]
 }
