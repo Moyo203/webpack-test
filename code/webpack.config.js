@@ -14,7 +14,15 @@ module.exports = {
                     'style-loader',
                     'css-loader'
                 ],
-            }
+            },
+            {
+                test: /\.less$/,		// 匹配less扩展名文件
+                use:[				
+                    'style-loader',		// 把less代码写入到网页中
+                    'css-loader',		// 读取less的代码
+                    'less-loader'		// 解释编译less代码
+                ]	
+            },
         ]
     }
 }
