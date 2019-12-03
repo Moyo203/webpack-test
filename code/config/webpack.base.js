@@ -15,6 +15,12 @@ module.exports = {
         filename: 'js/[name].bundle.js'       //这里是新建出来的文件
         //name是动态路径
     },
+     // + 提取公共模块配置
+     optimization: {
+        splitChunks: {
+            chunks: 'all'	// 提取所有文件的共同模块
+        }
+    },
    
     module:{
         rules:[
