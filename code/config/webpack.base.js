@@ -6,13 +6,22 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 清除所需要的插件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
+    // entry: {
+    //     index: "./src/index.js",
+    //     about: "./src/about.js"
+    // },   //webpack入口
     entry: {
-        index: "./src/index.js",
-        about: "./src/about.js"
+        index: "./src/index.js"
+       
     },   //webpack入口
+    // output: {                  //webpack出口
+    //     path: path.resolve('dist'),  //这里要绝对路径
+    //     filename: 'js/[name].bundle.js'       //这里是新建出来的文件
+    //     //name是动态路径
+    // },
     output: {                  //webpack出口
         path: path.resolve('dist'),  //这里要绝对路径
-        filename: 'js/[name].bundle.js'       //这里是新建出来的文件
+        filename: 'js/bundle.js'       //这里是新建出来的文件
         //name是动态路径
     },
      // + 提取公共模块配置
@@ -59,10 +68,12 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,	// 匹配图片文件
                 use: [
                     {
-                        loader: "file-loader",              // 处理图片文件返回链接
+                        // loader: "file-loader",              // 处理图片文件返回链接
+                        loader: 'url-loader',
                         options: {
-                            publicPath: "./images/",   		//  引入图片时会在路径前面加上该选项
-                            outputPath: "images"            //  输出到dist下的images目录
+                            // publicPath: "./images/",   		//  引入图片时会在路径前面加上该选项
+                            // outputPath: "images",            //  输出到dist下的images目录
+                            limit: 60000
                         }
                     } 
                 ]
