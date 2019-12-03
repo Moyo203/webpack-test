@@ -6,10 +6,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 清除所需要的插件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
-    entry: './src/index.js',   //webpack入口
+    entry: {
+        index: "./src/index.js",
+        about: "./src/about.js"
+    },   //webpack入口
     output: {                  //webpack出口
         path: path.resolve('dist'),  //这里要绝对路径
-        filename: 'main.js'       //这里是新建出来的文件
+        filename: 'js/[name].bundle.js'       //这里是新建出来的文件
+        //name是动态路径
     },
    
     module:{
